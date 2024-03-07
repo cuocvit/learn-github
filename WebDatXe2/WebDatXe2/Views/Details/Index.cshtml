@@ -1,0 +1,185 @@
+﻿@model IEnumerable<DATA.Entity.GetTripDetails_Result2>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    :root {
+        --primary-color: rgb(251, 117, 0);
+    }
+    .header{
+        height: 200px;
+    }
+    .container {
+        width: 60%;
+        margin: 0 auto;
+        display: flex;
+        height:2000px;
+    }
+
+    .information {
+        width: 60%;
+        font-size: 12px;
+        margin-top: 20px;
+        margin-right: 30px;
+    }
+    .main_infor{
+        border: 1px solid black;
+        margin: 30px 0px;
+        padding: 20px;
+    }
+    .time {
+        border: 1px solid black;
+        padding: 20px 15px;
+    }
+    .contact {
+        width: 40%;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .contact img {
+            width: 100%;
+        }
+
+        .contact button {
+            width: 100%;
+            height: 50px;
+            background-color: var(--primary-color);
+            border: none;
+        }
+        .contact button:hover{
+            cursor:pointer;
+            opacity: 0.8;
+        }
+        .form_check{
+            display:flex;
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+        .form_check input{
+            margin: 10px 0px;
+            width: 100%;
+            padding: 10px;
+        }
+        .form_check button{
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .form_check button:hover {
+            cursor: pointer;
+            opacity: 0.8;
+         }
+</style>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="information">
+            <h1>[Đặt vé] @item.start_point đi @item.end_point</h1>
+            <p>[Nhà xe] @item.ten_nxe</p>
+            <div class="main_infor">
+                <h1>Thông tin chính</h1>
+                <table width="400px">
+                    <tr>
+                        <td>Giá: </td>
+                        <td> @item.cost VND </td>
+                    </tr>
+                    <tr>
+                        <td>Giờ xuất phát: </td>
+                        <td>@item.time_start </td>
+                    </tr>
+                    <tr>
+                        <td>Giờ đến: </td>
+                        <td>@item.time_end </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày đi:  </td>
+                        <td>@item.date_start </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="time">
+                <table width="400px">
+                    <tr>
+                        <th>Điểm xuất phát</th>
+                        <th>Điểm đến</th>
+                    </tr>
+                    <tr>
+                        <td>@item.time_start - @item.start_point  </td>
+                        <td>@item.time_end - @item.end_point  </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form_check">
+                <form method="post">
+                    <label for="hoTen">Họ Tên:</label>
+                    <input type="text" id="hoTen" name="hoTen" required>
+                    <div class="error"><span id="error_name"></span></div>
+                    <label for="soDienThoai">Số Điện Thoại:</label>
+                    <input type="tel" id="soDienThoai" name="soDienThoai" required>
+                    <div class="error"><span id="error_phone"></span></div>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="diaChi">Địa Chỉ:</label>
+                    <input type="text" id="diaChi" name="diaChi" required>
+
+                    <label for="maGiamGia">Mã Giảm Giá:</label>
+                    <input type="text" id="maGiamGia" name="maGiamGia">
+
+                    <button type="submit">Đặt vé</button>
+
+                </form>
+            </div>
+            <script>
+                function hienthi() {
+                    var name = document.getElementById("hoTen").value;
+                    var sdt = document.getElementById("soDienThoai").value;
+                    let ktloi = false;
+
+                    let regex_name = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:\s[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
+                    if (regex_name.test(name) == false) {
+
+                        document.getElementById('error_name').innerHTML = '&emsp; tên nhập sai(Phải viết hoa chữ đầu và chữ phải có nghĩa)&emsp;';
+                        ktloi = true;
+                    } else {
+                        document.getElementById('error_name').innerHTML = '';
+                        ktloi = false;
+                    }
+
+                    let regex_phone = /^(?:0|\+84)[1-9][0-9]{8}$/;
+                    if (regex_phone.test(sdt) == false) {
+
+                        document.getElementById('error_phone').innerHTML = '&emsp; Số điện thoại nhập không đúng&emsp;';
+                        ktloi = true;
+                    } else {
+                        document.getElementById('error_phone').innerHTML = '';
+                        ktloi = false;
+                    }
+
+                    if (ktloi == false) {
+                        alert("Cảm ơn bạn đã Đặt vé của chúng tôi! Chúng tôi sẽ cố gắng phản hồi sớm nhất cho bạn!");
+
+                    }
+
+
+                }
+            </script>
+        </div>
+   
+        <div class="contact">
+            <img src="https://th.bing.com/th/id/OIP.PXanKHHnTolqd8ro8bgF9QHaDv?rs=1&pid=ImgDetMain" alt="">
+            <i class="ti-user"></i><p>Hỗ trợ khách hàng</p>
+            <button>0357476358</button>
+            <button style=" margin-top: -20px;border: 1px solid var(--primary-color);background-color: #fff">Gửi tin nhắn</button>
+        </div>
+         }
+    </div>
+

@@ -1,0 +1,34 @@
+﻿@model DATA.Entity.news
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 80%;
+            
+            margin: 20px auto;
+        }
+        .container img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1> @Html.DisplayFor(model => model.tieu_de)</h1>
+        <p> @Html.DisplayFor(model => model.thoi_gian_viet)</p>
+        <img src="@Html.DisplayFor(model => model.hinh_anh)" alt="Alternate Text" />
+        <p> @Html.Raw(Model.noi_dung)</p>
+    </div>
+</body>
+</html>

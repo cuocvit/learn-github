@@ -1,0 +1,107 @@
+﻿@model DATA.Entity.news
+
+@{
+    ViewBag.Title = "ThemMoi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ThemMoi</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>news</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.tieu_de, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tieu_de, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tieu_de, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tom_tat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tom_tat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tom_tat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                Hình ảnh
+            </label>
+            <div class="col-md-10">
+                <button type="button" onclick="OpenCkfinder()">Chọn ảnh</button>
+            </div>
+            <div class="col-md-10">
+                <input type="text" name="hinh_anh" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.noi_dung, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <textarea name="noi_dung" class="form-control">@Model.noi_dung</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.thoi_gian_viet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.thoi_gian_viet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.thoi_gian_viet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tac_gia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tac_gia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tac_gia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.link_seo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.link_seo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.link_seo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    <script>
+        CKEDITOR.replace("noi_dung");
+
+        function OpenCkfinder() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = SetUrlHinhAnh;
+            finder.popup();
+        }
+
+        @*function BrowseServer() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        *@
+        function SetUrlHinhAnh(fileUrl) {
+            $('input[name=hinh_anh]').val(fileUrl);
+        }
+    </script>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

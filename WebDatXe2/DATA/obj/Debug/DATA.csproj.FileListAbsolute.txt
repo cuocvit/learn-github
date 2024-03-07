@@ -1,0 +1,24 @@
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\DATA.dll.config
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\DATA.dll
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\DATA.pdb
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\EntityFramework.dll
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\EntityFramework.xml
+C:\Users\Admin\source\repos\WebDatXe2\DATA\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\source\repos\WebDatXe2\DATA\obj\Debug\DATA.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\WebDatXe2\DATA\obj\Debug\DATA.csproj.CopyComplete
+C:\Users\Admin\source\repos\WebDatXe2\DATA\obj\Debug\DATA.dll
+C:\Users\Admin\source\repos\WebDatXe2\DATA\obj\Debug\DATA.pdb
+C:\Users\Admin\source\repos\WebDatXe2\DATA\obj\Debug\DATA.csproj.AssemblyReference.cache
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\DATA.dll.config
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\DATA.dll
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\DATA.pdb
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\EntityFramework.dll
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\EntityFramework.SqlServer.dll
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\EntityFramework.xml
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\bin\Debug\EntityFramework.SqlServer.xml
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\obj\Debug\DATA.csproj.AssemblyReference.cache
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\obj\Debug\DATA.csproj.CoreCompileInputs.cache
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\obj\Debug\DATA.csproj.CopyComplete
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\obj\Debug\DATA.dll
+D:\University\học web nâng cao\WebDatXe\WebDatXe2\DATA\obj\Debug\DATA.pdb

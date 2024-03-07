@@ -1,0 +1,268 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Assets/user/themify-icons/themify-icons.css" rel="stylesheet" />
+    <title>Futabus</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            scroll-behavior: smooth;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            position: relative;
+            background-color: rgb(255, 255,255);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        :root {
+            --primary-color: rgb(251, 117, 0);
+        }
+
+        .header {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(rgb(255, 170, 14), #fb4b00);
+        }
+
+            .header .first_row {
+                width: 100%;
+                height: 75px;
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 20px;
+            }
+
+                .header .first_row .vietnam {
+                    height: 20px;
+                }
+
+                .header .first_row button {
+                    background-color: rgba(255, 255, 255, 0.0);
+                    border: none;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                .header .first_row .log_in {
+                    width: 20s0px;
+                    height: 50px;
+                    background-color: rgb(255, 255, 255);
+                    margin-top: 12px;
+                    border-radius: 25px;
+                }
+                .header .first_row a{
+                    text-decoration: none;
+                    padding: 20px 10px;
+                }
+                .header .first_row .logo {
+                    height: 75px;
+                    width: fit-content;
+                }
+
+            .header .horizontal-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex; /* Hiển thị các phần tử con theo chiều ngang */
+                justify-content: center;
+                f
+            }
+                .header .horizontal-list li {
+                    margin-right: 1px; /* Khoảng cách giữa các mục */
+                    padding: 8px;
+                    background-color: rgba(255, 255, 255, 0.0);
+                    width: 150px;
+                    height: 45px;
+                    text-align: center;
+                    line-height: 45px;
+                    font-size: 16px;
+                    color: white;
+                    text-transform: uppercase;
+                    font-weight: 550;
+                    font-family: InterTight;
+                }
+
+                    .header .horizontal-list li:hover {
+                        cursor: pointer;
+                        border-bottom: 5px solid #fff;
+                        font-weight: 700;
+                    }
+
+        
+        
+
+        .footer {
+            background-color: rgb(255 247 245);
+            height: 220px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            color: #000000;
+        }
+
+            .footer img {
+                height: 60%;
+                border-radius: 20px;
+                margin-right: 50px;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            .footer .con {
+                margin-left: 20px;
+                margin-top: 20px;
+                margin-right: 20px;
+                line-height: 30px;
+                display: flex;
+                flex-direction: column;
+                font-family: "Roboto Condensed", sans-serif;
+            }
+
+                .footer .con h1 {
+                    margin-bottom: 10px;
+                    font-size: 20px;
+                }
+
+                .footer .con a {
+                    text-decoration: none;
+                    color: #000000;
+                    font-size: 14px;
+                }
+
+            .footer a:hover {
+                color: var(--primary-color);
+            }
+
+            .footer li:hover {
+                cursor: pointer;
+            }
+
+            .footer li {
+                list-style: circle;
+            }
+            .login {
+                position: relative;
+                
+            }
+            .log_in a{
+                color:black;
+                font-size: 14px;
+            }
+            .log_in ul {
+            display: none;
+            width: 175px;
+            
+            text-decoration: none;
+            color: black;
+            line-height: 40px;
+            position: absolute;
+            top: 50px;
+           
+            list-style:none;
+        }
+        .log_in:hover  ul {
+            display: block;
+            background-color:white;
+        }
+        .log_in ul li:hover {
+           background-color:whitesmoke;
+        }
+    </style>
+  
+</head>
+<body>
+    <!-- 1. Header -->
+    <div class="header">
+        <div class="first_row">
+            <button><img src="https://th.bing.com/th/id/R.e173cd3e043cc3c960e9b694daee89c2?rik=61qZM%2ftuC2pBwA&riu=http%3a%2f%2fimg.freeflagicons.com%2fthumb%2fround_icon%2fvietnam%2fvietnam_640.png&ehk=EqfiXiS4pf7opp42n91naWAMO0rf05USPy%2fcjTRE6Ek%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" class="vietnam"> VN</button>
+            <a href="Home/Index"><img src="https://dieuhanh.futabus.vn/img/logo-futa.png" class="logo" alt=""></a>
+            @{
+                var user = WebDatXe2.App_Start.SessionConfig.GetGuestUser();
+            }
+            @if (user != null)
+            {
+        <div>
+            <button class="log_in " style=" background-color: rgba(255, 255, 255, 0.0); width:auto">
+                <a href="/User"><i class="ti-flickr-alt" style="font-size: 20px"></i> @user.name &nbsp;<i class="ti-arrow-circle-down"></i></a>
+                
+                <ul>
+                    <li><a href="/User/Logout">Đăng xuất</a></li>
+                    <li><a href="/User/Logout">Thông tin tài khoản</a></li>
+                    <li><a href="/User/Logout">Đặt lại mật khẩu</a></li>
+                </ul>
+            </button>
+            <!--<button class="log_in"><a href="/User/Logout">Đăng xuất</a></button>-->
+        </div>
+                }
+                else
+                {
+                <button class="log_in"><a href="/User">Đăng nhập/ Đăng ký</a></button>
+                }
+
+            </div>
+            <div class="second_row">
+                <ul class="horizontal-list">
+                    <a href="/Home">
+                    <li>Trang chủ</li></a>
+                    <a href="">
+                    <li>Lịch trình</li></a>
+                    <a href="">
+                    <li>tra cứu vé</li></a>
+                    <a href="/News">
+                    <li>Tin tức</li></a>
+                    <a href="">
+                    <li>Hóa đơn</li></a>
+                    <a href="/Contact">
+                    <li>Liên hệ</li></a>
+                    <a href="/About">
+                    <li>Về chúng tôi</li></a>
+                </ul>
+            </div>
+
+        </div>
+    <!-- 2. Container -->
+   @RenderBody()
+    <!-- 3. Footer -->
+    <div class="footer">
+        <img src="https://th.bing.com/th/id/R.55022bcd235b82629d61150179693523?rik=Bg4Wm5T1VtDs9w&pid=ImgRaw&r=0" alt="">
+        <div class="con">
+            <h1>Liên hệ </h1>
+            <p><i class="ti-home"></i>Địa chỉ:Số 01 Tô Hiến Thành, Phường 3, Thành phố Đà Lạt, Tỉnh Lâm Đồng, Việt Nam.</p>
+            <p><i class="ti-mobile"></i> 02838386852</p>
+            <p><i class="ti-email"></i>  hotro@futa.vn</p>
+            <p><i class="ti-facebook"></i> https://www.facebook.com/long.huggies.7</p>
+        </div>
+        <div class="con">
+            <h1>Hỗ trợ</h1>
+            <a href="">Tra cứu thông tin đặt vé</a>
+            <a href="">Điều khoản sử dụng</a>
+            <a href="">Câu hỏi thường gặp</a>
+            <a href="">Hướng dẫn đặt vé trên Web</a>
+        </div>
+        <div class="con">
+            <h1>FUTA Bus Lines</h1>
+            <ul>
+                <a href="">
+                <li>Về chúng tôi</li></a>
+                <a href="">
+                <li>Lịch trình</li></a>
+                <a href="">
+                <li>Tuyển dụng</li></a>
+                <a href="">
+                <li>Tin tức & Sự kiện</li>
+            </ul></a>
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

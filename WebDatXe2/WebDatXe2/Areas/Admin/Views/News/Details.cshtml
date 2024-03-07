@@ -1,0 +1,75 @@
+﻿@model DATA.Entity.news
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>news</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tieu_de)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tieu_de)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tom_tat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tom_tat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinh_anh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinh_anh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noi_dung)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.noi_dung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thoi_gian_viet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thoi_gian_viet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tac_gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tac_gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link_seo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link_seo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,133 @@
+﻿@model IEnumerable<DATA.Entity.news>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/themify-icons/themify-icons.css">
+    <title>Tin tức</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            scroll-behavior: smooth;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            position: relative;
+            background-color: rgb(235, 232, 232);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        :root {
+            --primary-color: rgb(251, 117, 0);
+        }
+
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgb(255, 170, 14), #fb4b00);
+        }
+
+                    .header .horizontal-list li:hover {
+                        cursor: pointer;
+                        border-bottom: 5px solid #fff;
+                        font-weight: 700;
+                    }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            color: rgb(0, 63, 0);
+        }
+
+        .box_news {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .each_news {
+            width: 32%;
+            height: 400px;
+            margin: 30px 0px;
+            position: relative;
+        }
+
+            .each_news:hover {
+                cursor: pointer;
+            }
+
+            .each_news img {
+                width: 100%;
+                height: 60%;
+                border-radius: 20px;
+            }
+
+            .each_news .text_news {
+                margin: 10px 10px;
+                font-family: initial;
+            }
+
+            .text_news h1 {
+            font-size: 16px;
+            /* height: 20%; */
+            /* line-height: 60px; */
+        }
+
+        .text_news p {
+            line-height: 22px;
+            font-size: 16px;
+            position: absolute;
+            bottom: 50px;
+            /* color: rgb(154, 154, 154); */
+        }
+
+       
+    </style>
+</head>
+<body>
+    <!-- 1. Header -->
+
+    <script>
+        function redirectToDetails(id) {
+            // Chuyển hướng đến trang Details trong controller News với id được truyền vào
+            window.location.href = '/News/Detail/' + id;
+        }
+    </script>
+    <!-- 2. containner -->
+    <div class="container">
+        <h1>Tin tức nổi bật ______________________________________________________________</h1>
+       
+
+        <div class="box_news" >
+            @foreach (var item in Model)
+            {
+          //  <form method="get" action="/News/Detail/@item.id">
+                <div class="each_news" onclick="redirectToDetails('@item.id')">
+                    <input type="hidden" name="id" value="@item.id" />
+                    <img src="@item.hinh_anh" alt="">
+                    <div class="text_news">
+                        <h1 onclick="redirectToDetails('@item.id')">@item.tieu_de</h1>
+                        <p>@item.thoi_gian_viet</p>
+                    </div>
+                </div>
+            //</form>
+            }
+
+        </div>
+    </div>
+   
+</body>
+</html>

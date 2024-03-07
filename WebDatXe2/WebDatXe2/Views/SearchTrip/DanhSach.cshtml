@@ -1,0 +1,303 @@
+﻿@model IEnumerable<DATA.Entity.SearchTrips1_Result1>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/themify-icons/themify-icons.css">
+    <title>Searching</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            scroll-behavior: smooth;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            position: relative;
+            background-color: rgb(235, 232, 232);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        :root {
+            --primary-color: rgb(251, 117, 0);
+        }
+
+        .header {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(rgb(255, 170, 14), #fb4b00);
+        }
+
+            .header .first_row {
+                width: 100%;
+                height: 75px;
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 20px;
+            }
+
+                .header .first_row .vietnam {
+                    height: 20px;
+                }
+
+                .header .first_row button {
+                    background-color: rgba(255, 255, 255, 0.0);
+                    border: none;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                .header .first_row .log_in {
+                    width: 175px;
+                    height: 50px;
+                    background-color: rgb(255, 255, 255);
+                    margin-top: 12px;
+                    border-radius: 25px;
+                }
+
+                .header .first_row .logo {
+                    height: 75px;
+                    width: fit-content;
+                }
+
+            .header .horizontal-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex; /* Hiển thị các phần tử con theo chiều ngang */
+                justify-content: center;
+            }
+
+                .header .horizontal-list li {
+                    margin-right: 1px; /* Khoảng cách giữa các mục */
+                    padding: 8px;
+                    background-color: rgba(255, 255, 255, 0.0);
+                    width: 150px;
+                    height: 45px;
+                    text-align: center;
+                    line-height: 45px;
+                    font-size: 20px;
+                    color: white;
+                    text-transform: uppercase;
+                    font-weight: 550;
+                    font-family: InterTight;
+                }
+
+                    .header .horizontal-list li:hover {
+                        cursor: pointer;
+                        border-bottom: 5px solid #fff;
+                        font-weight: 700;
+                    }
+
+        .container {
+            display: flex;
+            width: 80%;
+            /* height: 500px; */
+            margin: 0 auto;
+          
+            
+        }
+
+        .search_filter {
+            width: 30%;
+            margin: 20px;
+            height: 500px;
+            padding: 20px;
+            border: 1px solid rgb(153,150,150);
+            border-radius: 20px;
+        }
+            .search_filter form h2, .search_filter form h3{
+                margin: 10px 20px;
+            }
+            .search_filter form input {
+                margin: 10px 20px;
+            }
+            .search_filter form button {
+                width: 30%;
+                margin-top: 10px;
+                padding: 10px 0px;
+                border-radius: 20px;
+                background-color: var(--primary-color);
+                border: 1px solid rgb(153,150,150);
+                color: white;
+            }
+            .search_filter form button:hover{
+                cursor: pointer;
+                opacity: 0.9;
+            }
+            .infor {
+                width: 70%;
+            }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Tạo radio button lớn hơn và nhãn liên kết phù hợp */
+        input[type="radio"] {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .infor > h1{
+            margin: 20px 20px -20px;
+            
+        }
+        .bus {
+           
+            height: 150px;
+            margin: 60px 10px;
+            border: 1px solid #000;
+           border-radius: 20px;
+        }
+
+        .row_1 {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0px;
+            font-size: 10px;
+            margin: 0px 40px 20px;
+            border-bottom: 1px solid #C0C0C0;
+        }
+        .row_2 {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0px;
+            font-size: 10px;
+            margin: 0px 40px 20px;
+            border-bottom: 1px solid #C0C0C0;
+        }
+        .row_3 {
+            display: flex;
+            margin: 0px 40px;
+            font-size: 10px;
+            position:relative;
+        }
+          .row_3 button {
+                position: absolute;
+                right: 0px;
+                top: -10px;
+                padding: 10px 20px;
+                border-radius: 30px;
+                border: none;
+                background-color: #ef5222;
+                color: white;
+         }
+            .row_3 button:hover{
+                opacity: 0.7;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <!-- 1. Header -->
+    <div class="header">
+        <div class="first_row">
+            <button><img src="https://th.bing.com/th/id/R.e173cd3e043cc3c960e9b694daee89c2?rik=61qZM%2ftuC2pBwA&riu=http%3a%2f%2fimg.freeflagicons.com%2fthumb%2fround_icon%2fvietnam%2fvietnam_640.png&ehk=EqfiXiS4pf7opp42n91naWAMO0rf05USPy%2fcjTRE6Ek%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" class="vietnam"> VN</button>
+            <a href="index.html"><img src="https://dieuhanh.futabus.vn/img/logo-futa.png" class="logo" alt=""></a>
+            <button class="log_in">Đăng nhập/ Đăng ký</button>
+        </div>
+        <div class="second_row">
+            <ul class="horizontal-list">
+                <a href="/Home">
+                <li>Trang chủ</li></a>
+                <a href="#">
+                <li>Lịch trình</li></a>
+                <a href="">
+                <li>tra cứu vé</li></a>
+                <a href="">
+                <li>Tin tức</li></a>
+                <a href="">
+                <li>Hóa đơn</li></a>
+                <a href="/Contact">
+                <li>Liên hệ</li></a>
+                <a href="/About">
+                <li>Về chúng tôi</li></a>
+            </ul>
+        </div>
+    </div>
+    <!-- 2. containner -->
+    <div class="container">
+        <div class="search_filter">
+            <form action="">
+                <h2>Bộ lọc tìm kiếm</h2>
+                <h3>Loại xe</h3>
+                <input type="radio" id="Limousine" name="carType" value="Limousine">
+                <label for="Limousine">Limousine</label><br>
+
+                <input type="radio" id="Giuong_nam" name="carType" value="Giuong_nam">
+                <label for="Giuong_nam">Giường nằm</label><br>
+
+                <input type="radio" id="xe_khach" name="carType" value="xe_khach">
+                <label for="xe_khach">Xe khách</label><br>
+
+                <input type="radio" id="xe_lien_tuyen" name="carType" value="xe_lien_tuyen">
+                <label for="xe_lien_tuyen">Xe liên tuyến</label><br>
+
+
+                <h3>Chọn giờ</h3>
+                <input type="time" id="meeting-time" name="meeting-time">
+                <h3>Giá tiền</h3>
+                <input type="radio" id="uptodown" name="coast" value="uptodown">
+                <label for="uptodown">Cao đến thấp</label><br>
+
+                <input type="radio" id="downtoup" name="coast" value="downtoup">
+                <label for="downtoup">Thấp đến cao</label><br>
+                <button type="submit">Lọc</button>
+            </form>
+        </div>
+        <div class="infor">
+            @if (@Model.Count() == 0)
+            {
+                <h1>Không có thông tin chuyến xe này!</h1>
+            }
+            else
+            {
+                <h1>Kết quả tìm kiếm:@Html.DisplayFor(model => model.First().start_point) - >  @Html.DisplayFor(model => model.First().end_point) ( @Model.Count())</h1>
+            }
+
+            @foreach (var item in Model)
+            {
+                using (Html.BeginForm("Index", "Details", FormMethod.Post))
+                {
+                    <div class="bus">
+                        <div class="row_1">
+                            <h3> @Html.DisplayFor(modelItem => item.time_start)</h3>
+                            <i class="ti-location-pin"></i>
+                            <h3> @Html.DisplayFor(modelItem => item.time_end)</h3>
+                        </div>
+                        <div class="row_2">
+                            <h1>@Html.DisplayFor(modelItem => item.start_point)</h1>
+                            <h1>   @Html.DisplayFor(modelItem => item.end_point)</h1>
+                        </div>
+                        <div class="row_3">
+                            <h1 style="color: var(--primary-color);margin-right: 20px">  @Html.DisplayFor(modelItem => item.cost)</h1>
+                            <h1 style="margin-right: 20px">  @Html.DisplayFor(modelItem => item.vehicle_type)</h1>
+                            <h1>
+                                @Html.DisplayFor(modelItem => item.Chair) ghế trống
+                            </h1>
+                            <input type="hidden" id="tripId" name="tripDetailsId" value="@item.trip_details_id" />
+                            <input type="hidden" id="tripDetailsId" name="tripId" value="@item.id" />
+                            <button type="submit">Chọn Chuyến</button>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</body>
+</html>

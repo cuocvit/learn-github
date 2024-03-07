@@ -1,0 +1,303 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        scroll-behavior: smooth;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        position: relative;
+        background-color: rgb(235, 232, 232);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    :root {
+        --primary-color: rgb(251, 117, 0);
+    }
+
+    .header {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(rgb(255, 170, 14), #fb4b00);
+    }
+
+        .header .first_row {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+            .header .first_row .vietnam {
+                height: 20px;
+            }
+
+            .header .first_row button {
+                background-color: rgba(255, 255, 255, 0.0);
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .header .first_row .log_in {
+                width: 175px;
+                height: 50px;
+                background-color: rgb(255, 255, 255);
+                margin-top: 12px;
+                border-radius: 25px;
+            }
+
+            .header .first_row .logo {
+                height: 75px;
+                width: fit-content;
+            }
+
+        .header .second_row {
+            display: none;
+        }
+
+    .container {
+        height: 1000px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .content {
+        background-color: white;
+        width: 80%;
+        height: 500px;
+        position: absolute;
+        top: -100px;
+        border: 1px solid var(--primary-color);
+        border-radius: 20px;
+        box-shadow: 5px 5px 5px #cb7d7d;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .content img {
+            width: 50%;
+            margin: auto 0;
+            height: 400px;
+            /* margin-left: 20px; */
+        }
+
+        .content .form {
+            width: 40%;
+            margin-right: 20px;
+        }
+
+    .form #login {
+        width: 100%;
+        height: 100%;
+        /* display: block; */
+        /* background-color: aqua; */
+    }
+
+    .form form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex; /* Hiển thị các phần tử con theo chiều ngang */
+        justify-content: center;
+    }
+
+    .form li {
+        padding: 10px 50px;
+        /* width: 50%; */
+    }
+
+    .form button {
+        width: 50%;
+        font-size: 20px;
+        border: none;
+        background-color: white;
+        
+    }
+
+    .form li:hover {
+        cursor: pointer;
+        /* border-bottom: 5px solid var(--primary-color);  */
+        /* font-weight: 700; */
+        color: var(--primary-color);
+    }
+
+    .form form button {
+        background-color: var(--primary-color);
+        width: 100%;
+        padding: 15px 0px;
+        border-radius: 50px;
+        color: white;
+    }
+
+    .form h1 {
+        margin: 40px 0px 30px;
+        text-align: center;
+    }
+
+    .form form input {
+        margin: 20px 0px;
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 10px;
+        background-color: #e3b8b83a;
+        border: 1px solid var(--primary-color);
+        outline: none;
+    }
+    /* .form #signin{
+         display: none;
+       } */
+    .footer {
+        background-color: rgb(255 247 245);
+        height: 220px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: #000000;
+    }
+
+        .footer img {
+            height: 60%;
+            border-radius: 20px;
+            margin-right: 50px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .footer .con {
+            margin-left: 20px;
+            margin-top: 20px;
+            margin-right: 20px;
+            line-height: 30px;
+            display: flex;
+            flex-direction: column;
+            font-family: "Roboto Condensed", sans-serif;
+        }
+
+            .footer .con h1 {
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .footer .con a {
+                text-decoration: none;
+                color: #000000;
+                font-size: 16px;
+            }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer li:hover {
+            cursor: pointer;
+        }
+
+        .footer li {
+            list-style: circle;
+        }
+
+    .visible {
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+    #click_login:hover {
+        border-bottom: 2px solid red;
+    }
+    #click_signin {
+        border-bottom: 2px solid red;
+    }
+</style>
+<script>
+    function login() {
+        var div1 = document.getElementById("login");
+        var div2 = document.getElementById("signin");
+
+        div1.classList.remove("hidden");
+        div1.classList.add("visible");
+
+        div2.classList.remove("visible");
+        div2.classList.add("hidden");
+    }
+    function signin() {
+        var div1 = document.getElementById("login");
+        var div2 = document.getElementById("signin");
+
+        div1.classList.remove("visible");
+        div1.classList.add("hidden");
+
+        div2.classList.remove("hidden");
+        div2.classList.add("visible");
+    }
+</script>
+<!-- 2. Container -->
+<div class="container">
+    <div class="content">
+        <img src="https://th.bing.com/th/id/R.5028ad5355f7b9543a1dcf00f5c9ee22?rik=uUlrUzyjMSFtTg&riu=http%3a%2f%2f1.bp.blogspot.com%2f-bl2VgRgxzoc%2fUhzmIxOiPGI%2fAAAAAAAACAE%2f1J7pbcEb0g0%2fs1600%2fBUS.jpg&ehk=dCnzsL1cLlmBbMNFwGdg6zUpDiHRBuqNWkReqsWRIiQ%3d&risl=&pid=ImgRaw&r=0" alt="">
+        <div class="form">
+            <div id="login" class="visible">
+                <h1>Đăng nhập tài khoản</h1>
+                <ul>
+                    <button id="click_login" onclick="login()">
+                    <li><i class="ti-user"></i> &nbsp;  Đăng nhập</li></button>
+                    <button id="click_signin" onclick="signin()">
+                    <li>Đăng ký</li></button>
+                </ul>
+                <form method="post">
+
+                    <input type="text" id="email" name="username" required placeholder="Nhập username">
+
+
+                    <input type="password" id="password" name="password" required placeholder="Nhập mật khẩu">
+                    @if (!string.IsNullOrEmpty(ViewBag.error))
+                    {
+                        <div class="alert alert-danger" style="margin: 0px 0px 10px 10px; color: red">@ViewBag.error</div>
+                    }
+                    <button type="submit" id="submit">Đăng Nhập</button>
+
+                </form>
+            </div>
+            <div id="signin" class="hidden">
+                <h1>Đăng ký tài khoản</h1>
+                <ul>
+                    <button id="click_login" onclick="login()">
+                    <li><i class="ti-user"></i> &nbsp;  Đăng nhập</li></button>
+                    <button id="click_signin" onclick="signin()">
+                    <li>Đăng ký</li></button>
+                </ul>
+                <form action="" method="post">
+                    <input type="text" id="username" name="username" required placeholder="Nhập Họ tên">
+                    <input type="email" id="email" name="email" required placeholder="Nhập email">
+
+
+                    <input type="password" id="password" name="password" required placeholder="Nhập mật khẩu">
+
+                    <button type="submit" id="submit">Đăng Ký</button>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 3. Footer -->

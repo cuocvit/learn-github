@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DATA.Entity.news>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Thêm bài viết", "ThemMoi")
+</p>
+<p>
+    @ViewBag.DeleteMessage
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tieu_de)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tom_tat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh_anh)
+        </th>
+       @* <th>
+            @Html.DisplayNameFor(model => model.noi_dung)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.thoi_gian_viet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tac_gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.link_seo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tieu_de)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tom_tat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinh_anh)
+        </td>
+        @*<td>
+            @Html.Raw(item.noi_dung)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.thoi_gian_viet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tac_gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.link_seo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,385 @@
+﻿@model IEnumerable<DATA.Entity.news>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        scroll-behavior: smooth;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        position: relative;
+        background-color: rgb(235, 232, 232);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    :root {
+        --primary-color: rgb(251, 117, 0);
+    }
+
+    .header {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(rgb(255, 170, 14), #fb4b00);
+    }
+
+        .header .first_row {
+            width: 100%;
+            height: 75px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+            .header .first_row .vietnam {
+                height: 20px;
+            }
+
+            .header .first_row button {
+                background-color: rgba(255, 255, 255, 0.0);
+                border: none;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+            .header .first_row .log_in {
+                width: 175px;
+                height: 50px;
+                background-color: rgb(255, 255, 255);
+                margin-top: 12px;
+                border-radius: 25px;
+            }
+
+            .header .first_row .logo {
+                height: 75px;
+                width: fit-content;
+            }
+
+        .header .horizontal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Hiển thị các phần tử con theo chiều ngang */
+            justify-content: center;
+        }
+
+            .header .horizontal-list li {
+                margin-right: 1px; /* Khoảng cách giữa các mục */
+                padding: 8px;
+                background-color: rgba(255, 255, 255, 0.0);
+                width: 150px;
+                height: 45px;
+                text-align: center;
+                line-height: 45px;
+                font-size: 16px;
+                color: white;
+                text-transform: uppercase;
+                font-weight: 550;
+                font-family: InterTight;
+            }
+
+                .header .horizontal-list li:hover {
+                    cursor: pointer;
+                    border-bottom: 5px solid #fff;
+                    font-weight: 700;
+                }
+
+    .container {
+        background-color: #ffffff;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        flex-wrap:wrap;
+    }
+    .container1 {
+        width: 80%;
+        margin-top: 50px;
+        color: rgb(0, 63, 0);
+
+    }
+    .box_news {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .each_news {
+        width: 30%;
+        height: 400px;
+        margin: 30px 0px;
+        position: relative;
+    }
+
+        .each_news:hover {
+            cursor: pointer;
+        }
+
+        .each_news img {
+            width: 100%;
+            height: 60%;
+            border-radius: 20px;
+        }
+
+        .each_news .text_news {
+            margin: 10px 10px;
+            font-family: initial;
+        }
+
+    .text_news h1 {
+        font-size: 16px;
+        /* height: 20%; */
+        /* line-height: 60px; */
+    }
+
+    .text_news p {
+        line-height: 22px;
+        font-size: 16px;
+        position: absolute;
+        bottom: 50px;
+        /* color: rgb(154, 154, 154); */
+    }
+
+        .container .big_logo {
+            width: 80%;
+            height: 300px;
+            background: linear-gradient(to left, rgb(255, 198, 92),rgb(255, 106, 0));
+            position: absolute;
+            top: -50px;
+            border-radius: 25px;
+        }
+
+    .big_logo img {
+        margin-top: 20px;
+        margin-left: 75px;
+        width: 40%;
+        height: auto;
+    }
+
+    .container .searching {
+        width: 80%;
+        height: 200px;
+        margin-top: 300px;
+        border: 2px solid var(--primary-color);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .searching .select_type {
+        width: 80%;
+        height: 25px;
+        /* background-color: #fb4b00; */
+        padding: 20px;
+    }
+
+        .searching .select_type label {
+            margin-left: 10px;
+            margin-top: -10px;
+            margin-right: 20px;
+        }
+
+        .searching .select_type input:hover {
+            cursor: pointer;
+        }
+
+    .form form {
+        display: flex;
+        flex-direction: row; /* Dàn layout theo chiều dọc */
+        width: 100%; /* Giả sử một giới hạn chiều rộng tùy chọn cho form */
+        margin: 0 auto; /* Để căn giữa form */
+    }
+
+    .form label {
+        margin-bottom: 8px;
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    .form input, select {
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        width: 90%;
+        padding: 20px;
+        border-radius: 14px;
+        border: 1px solid rgb(167, 167, 167);
+    }
+
+    .form button {
+        background-color: var(--primary-color);
+        color: #fff;
+        font-size: 20px;
+        padding: 20px 127px;
+        border: none;
+        border-radius: 70px;
+        cursor: pointer;
+        position: absolute;
+        top: 165px;
+        left: 490px;
+    }
+
+    table {
+        margin: 0 25px;
+    }
+
+        table th {
+            text-align: start;
+            margin-left: 20px;
+            width: 25%;
+        }
+
+    .footer {
+        background-color: rgb(255 247 245);
+        height: 220px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: #000000;
+    }
+
+        .footer img {
+            height: 60%;
+            border-radius: 20px;
+            margin-right: 50px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .footer .con {
+            margin-left: 20px;
+            margin-top: 20px;
+            margin-right: 20px;
+            line-height: 30px;
+            display: flex;
+            flex-direction: column;
+            font-family: "Roboto Condensed", sans-serif;
+        }
+
+            .footer .con h1 {
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .footer .con a {
+                text-decoration: none;
+                color: #000000;
+                font-size: 16px;
+            }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer li:hover {
+            cursor: pointer;
+        }
+
+        .footer li {
+            list-style: circle;
+        }
+</style>
+<div class="container">
+    <div class="big_logo">
+        <img src="https://th.bing.com/th/id/R.5ddb7f2ee2203503e381b0f17cc0172d?rik=ATkAnQXpxlGgzg&pid=ImgRaw&r=0&sres=1&sresct=1" alt="">
+        <img src="https://th.bing.com/th/id/R.46288c770680bb76a8260d05c741aeab?rik=8Q8grVWGJiDIng&pid=ImgRaw&r=0" alt="">
+
+    </div>
+    <div class="searching">
+        <div class="select_type">
+            <input type="hidden" name="type" style="width: 18px;height: 18px;"><label for=""></label>
+            <input type="hidden" name="type" style="width: 18px;height: 18px;"><label for=""></label>
+        </div>
+        <div class="form">
+            <form method="post" action="/SearchTrip/DanhSach">
+                <table width="100%">
+                    <tr>
+                        <th><label for="destination">Điểm đến:</label></th>
+                        <th> <label for="departure">Điểm đi:</label></th>
+                        <th> <label for="date">Chọn ngày tháng:</label></th>
+                        <th><label for="ticketQuantity">Số vé:</label></th>
+                    </tr>
+                    <tr>
+                        <td>  @Html.DropDownList("SelectedStartPoint", (SelectList)ViewBag.StartPoints, "Chọn Điểm Đi", new { @class = "form-control" })</td>
+                        <td>@Html.DropDownList("SelectedEndPoint", (SelectList)ViewBag.EndPoints, "Chọn Điểm Đến", new { @class = "form-control" })</td>
+                        <td> <input type="date" id="date" name="date" min="{{ DateTime.Now.ToString("yyyy-MM-dd") }}" oninput="filterDates()" required></td>
+                        @*<script>
+                            function filterDates() {
+                                var datePicker = document.getElementById("datePicker");
+                                var selectedDate = new Date(datePicker.value);
+                                var today = new Date();
+
+                                // Nếu ngày được chọn nhỏ hơn ngày hôm nay, đặt lại ngày thành ngày hôm nay
+                                if (selectedDate < today) {
+                                    datePicker.value = today.toISOString().slice(0, 10);
+                                    selectedDate = today;
+                                }
+
+                                // Lấy tất cả các option trong dropdown
+                                var options = datePicker.querySelectorAll("option");
+
+                                // Lặp qua từng option và ẩn các ngày trong quá khứ
+                                options.forEach(function (option) {
+                                    var optionDate = new Date(option.value);
+                                    if (optionDate < today) {
+                                        option.disabled = true; // Disable option
+                                    } else {
+                                        option.disabled = false; // Enable option
+                                    }
+                                });
+                            }
+                        </script>*@
+                        <td>
+                            <select id="ticketQuantity" name="ticketQuantity" style="  /* Điều chỉnh chiều rộng của select box */ font-size: 16px; /* Điều chỉnh cỡ chữ của select box */ " required>
+                                <!-- Thêm các tùy chọn cho số vé -->
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <!-- Các tùy chọn khác có thể được thêm vào theo nhu cầu -->
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit">Tìm xe </button>
+            </form>
+        </div>
+    </div>
+    <div class="discounts">
+
+    </div>
+    <div class="container1">
+        <h1>Tin tức nổi bật ______________________________________________________________</h1>
+
+
+        <div class="box_news">
+            @foreach (var item in Model)
+            {
+                //  <form method="get" action="/News/Detail/@item.id">
+                <div class="each_news" onclick="redirectToDetails('@item.id')">
+                    <input type="hidden" name="id" value="@item.id" />
+                    <img src="@item.hinh_anh" alt="">
+                    <div class="text_news">
+                        <h1 onclick="redirectToDetails('@item.id')">@item.tieu_de</h1>
+                        <p>@item.thoi_gian_viet</p>
+                    </div>
+                </div>
+                //</form>
+            }
+
+        </div>
+    </div>
+
+</div>
+

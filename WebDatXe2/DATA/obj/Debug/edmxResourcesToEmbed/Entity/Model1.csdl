@@ -1,0 +1,458 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyBenXeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin_account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="password" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="buser_account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="account" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="id_buses" Type="Int32" />
+    <NavigationProperty Name="bus" Relationship="QuanLyBenXeModel.FK_buser_account_buses" FromRole="buser_account" ToRole="bus" />
+  </EntityType>
+  <EntityType Name="bus">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="210" FixedLength="false" Unicode="true" />
+    <Property Name="phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="avatar" Type="String" MaxLength="310" FixedLength="true" Unicode="true" />
+    <Property Name="status_confirm" Type="Boolean" />
+    <Property Name="status_update" Type="Boolean" />
+    <Property Name="status_delete" Type="Boolean" />
+    <NavigationProperty Name="checkpoints" Relationship="Self.FK_checkpoints_buses" FromRole="buses" ToRole="checkpoints" />
+    <NavigationProperty Name="vehicles" Relationship="Self.FK_vehicle_buses" FromRole="buses" ToRole="vehicle" />
+    <NavigationProperty Name="buser_account1" Relationship="QuanLyBenXeModel.FK_buser_account_buses" FromRole="bus" ToRole="buser_account" />
+  </EntityType>
+  <EntityType Name="checkpoint">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="id_buses" Type="Int32" />
+    <NavigationProperty Name="bus" Relationship="Self.FK_checkpoints_buses" FromRole="checkpoints" ToRole="buses" />
+  </EntityType>
+  <EntityType Name="cmt">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cmt1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="parent_cmt_id" Type="Int32" />
+    <NavigationProperty Name="cmt11" Relationship="Self.FK_cmt_cmt1" FromRole="cmt" ToRole="cmt1" />
+    <NavigationProperty Name="cmt2" Relationship="Self.FK_cmt_cmt1" FromRole="cmt1" ToRole="cmt" />
+    <NavigationProperty Name="guest_account" Relationship="Self.FK_cmt_guest_account" FromRole="cmt" ToRole="guest_account" />
+  </EntityType>
+  <EntityType Name="discount">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="discount_percentage" Type="Double" />
+    <Property Name="trip_id" Type="Int32" />
+    <Property Name="about" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="trips" Relationship="Self.FK_trip_discount" FromRole="discount" ToRole="trip" />
+  </EntityType>
+  <EntityType Name="guest_account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="cmts" Relationship="Self.FK_cmt_guest_account" FromRole="guest_account" ToRole="cmt" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK_transactions_guest_account" FromRole="guest_account" ToRole="transactions" />
+    <Property Name="email" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="guest_id" Type="Int32" />
+    <Property Name="trip_id" Type="Int32" />
+    <Property Name="total_money" Type="Double" />
+    <Property Name="phone_number" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="110" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="110" FixedLength="true" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="110" FixedLength="true" Unicode="true" />
+    <Property Name="date_success" Type="DateTime" Precision="3" />
+    <Property Name="type_pay" Type="Int32" />
+    <Property Name="status" Type="Boolean" />
+    <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="guest_account" Relationship="Self.FK_transactions_guest_account" FromRole="transactions" ToRole="guest_account" />
+    <NavigationProperty Name="trip" Relationship="Self.FK_transactions_trip" FromRole="transactions" ToRole="trip" />
+  </EntityType>
+  <EntityType Name="trip">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="start_point" Type="String" MaxLength="310" FixedLength="false" Unicode="true" />
+    <Property Name="end_point" Type="String" MaxLength="310" FixedLength="false" Unicode="true" />
+    <Property Name="status_confirm" Type="Boolean" />
+    <Property Name="status_update" Type="Boolean" />
+    <Property Name="status_delete" Type="Boolean" />
+    <Property Name="id_discount" Type="Int32" />
+    <Property Name="vehicle_id" Type="Int32" />
+    <NavigationProperty Name="discount" Relationship="Self.FK_trip_discount" FromRole="trip" ToRole="discount" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK_transactions_trip" FromRole="trip" ToRole="transactions" />
+    <NavigationProperty Name="vehicle" Relationship="Self.FK_trip_vehicle" FromRole="trip" ToRole="vehicle" />
+    <NavigationProperty Name="trip_details" Relationship="QuanLyBenXeModel.FK_trip_time_trip1" FromRole="trip" ToRole="trip_details" />
+    <Property Name="cost" Type="Int32" />
+    <Property Name="chair" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vehicle">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="210" FixedLength="false" Unicode="true" />
+    <Property Name="license_plate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="avatar" Type="String" MaxLength="310" FixedLength="false" Unicode="true" />
+    <Property Name="status_confirm" Type="Int32" />
+    <Property Name="status_update" Type="Int32" />
+    <Property Name="status_delete" Type="Int32" />
+    <Property Name="id_buses" Type="Int32" />
+    <NavigationProperty Name="bus" Relationship="Self.FK_vehicle_buses" FromRole="vehicle" ToRole="buses" />
+    <NavigationProperty Name="trips" Relationship="Self.FK_trip_vehicle" FromRole="vehicle" ToRole="trip" />
+  </EntityType>
+  <Association Name="FK_checkpoints_buses">
+    <End Role="buses" Type="Self.bus" Multiplicity="0..1" />
+    <End Role="checkpoints" Type="Self.checkpoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buses">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="checkpoints">
+        <PropertyRef Name="id_buses" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_vehicle_buses">
+    <End Role="buses" Type="Self.bus" Multiplicity="0..1" />
+    <End Role="vehicle" Type="Self.vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buses">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="vehicle">
+        <PropertyRef Name="id_buses" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cmt_cmt1">
+    <End Role="cmt" Type="Self.cmt" Multiplicity="0..1" />
+    <End Role="cmt1" Type="Self.cmt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cmt">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cmt1">
+        <PropertyRef Name="parent_cmt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cmt_guest_account">
+    <End Role="guest_account" Type="Self.guest_account" Multiplicity="0..1" />
+    <End Role="cmt" Type="Self.cmt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="guest_account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cmt">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_discount">
+    <End Role="discount" Type="Self.discount" Multiplicity="0..1" />
+    <End Role="trip" Type="Self.trip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="discount">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip">
+        <PropertyRef Name="id_discount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactions_guest_account">
+    <End Role="guest_account" Type="Self.guest_account" Multiplicity="0..1" />
+    <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="guest_account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="transactions">
+        <PropertyRef Name="guest_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_transactions_trip">
+    <End Role="trip" Type="Self.trip" Multiplicity="0..1" />
+    <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="transactions">
+        <PropertyRef Name="trip_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trip_vehicle">
+    <End Role="vehicle" Type="Self.vehicle" Multiplicity="0..1" />
+    <End Role="trip" Type="Self.trip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="vehicle">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip">
+        <PropertyRef Name="vehicle_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyBenXeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin_account" EntityType="Self.admin_account" />
+    <EntitySet Name="buser_account" EntityType="Self.buser_account" />
+    <EntitySet Name="buses" EntityType="Self.bus" />
+    <EntitySet Name="checkpoints" EntityType="Self.checkpoint" />
+    <EntitySet Name="cmts" EntityType="Self.cmt" />
+    <EntitySet Name="discounts" EntityType="Self.discount" />
+    <EntitySet Name="guest_account" EntityType="Self.guest_account" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="transactions" EntityType="Self.transaction" />
+    <EntitySet Name="trips" EntityType="Self.trip" />
+    <EntitySet Name="vehicles" EntityType="Self.vehicle" />
+    <AssociationSet Name="FK_checkpoints_buses" Association="Self.FK_checkpoints_buses">
+      <End Role="buses" EntitySet="buses" />
+      <End Role="checkpoints" EntitySet="checkpoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_vehicle_buses" Association="Self.FK_vehicle_buses">
+      <End Role="buses" EntitySet="buses" />
+      <End Role="vehicle" EntitySet="vehicles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cmt_cmt1" Association="Self.FK_cmt_cmt1">
+      <End Role="cmt" EntitySet="cmts" />
+      <End Role="cmt1" EntitySet="cmts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cmt_guest_account" Association="Self.FK_cmt_guest_account">
+      <End Role="guest_account" EntitySet="guest_account" />
+      <End Role="cmt" EntitySet="cmts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_discount" Association="Self.FK_trip_discount">
+      <End Role="discount" EntitySet="discounts" />
+      <End Role="trip" EntitySet="trips" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactions_guest_account" Association="Self.FK_transactions_guest_account">
+      <End Role="guest_account" EntitySet="guest_account" />
+      <End Role="transactions" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_transactions_trip" Association="Self.FK_transactions_trip">
+      <End Role="trip" EntitySet="trips" />
+      <End Role="transactions" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trip_vehicle" Association="Self.FK_trip_vehicle">
+      <End Role="vehicle" EntitySet="vehicles" />
+      <End Role="trip" EntitySet="trips" />
+    </AssociationSet>
+    <EntitySet Name="trip_details" EntityType="QuanLyBenXeModel.trip_details" />
+    <AssociationSet Name="FK_trip_time_trip1" Association="QuanLyBenXeModel.FK_trip_time_trip1">
+      <End Role="trip" EntitySet="trips" />
+      <End Role="trip_details" EntitySet="trip_details" />
+    </AssociationSet>
+    <FunctionImport Name="SearchTrips">
+      <Parameter Name="StartPoint" Mode="In" Type="String" />
+      <Parameter Name="EndPoint" Mode="In" Type="String" />
+      <Parameter Name="DateStart" Mode="In" Type="DateTime" />
+      <Parameter Name="TimeStart" Mode="In" Type="Time" />
+      <Parameter Name="TimeEnd" Mode="In" Type="Time" />
+      <Parameter Name="VehicleType" Mode="In" Type="String" />
+      <Parameter Name="SortOrder" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchTrips1" ReturnType="Collection(QuanLyBenXeModel.SearchTrips1_Result1)">
+      <Parameter Name="StartPoint" Mode="In" Type="String" />
+      <Parameter Name="EndPoint" Mode="In" Type="String" />
+      <Parameter Name="DateStart" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GetTripDetails" ReturnType="Collection(QuanLyBenXeModel.GetTripDetails_Result2)">
+      <Parameter Name="TripId" Mode="In" Type="Int32" />
+      <Parameter Name="TripDetailsId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <AssociationSet Name="FK_buser_account_buses" Association="QuanLyBenXeModel.FK_buser_account_buses">
+      <End Role="bus" EntitySet="buses" />
+      <End Role="buser_account" EntitySet="buser_account" />
+    </AssociationSet>
+    <EntitySet Name="news" EntityType="QuanLyBenXeModel.news" />
+  </EntityContainer>
+  <EntityType Name="trip_details">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date_start" Type="DateTime" Precision="0" />
+    <Property Name="time_start" Type="Time" Precision="7" />
+    <Property Name="date_end" Type="DateTime" Precision="0" />
+    <Property Name="time_end" Type="Time" Precision="7" />
+    <Property Name="total" Type="Int32" />
+    <Property Name="trip_id" Type="Int32" />
+    <NavigationProperty Name="trip" Relationship="QuanLyBenXeModel.FK_trip_time_trip1" FromRole="trip_details" ToRole="trip" />
+  </EntityType>
+  <Association Name="FK_trip_time_trip1">
+    <End Type="QuanLyBenXeModel.trip" Role="trip" Multiplicity="0..1" />
+    <End Type="QuanLyBenXeModel.trip_details" Role="trip_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trip">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trip_details">
+        <PropertyRef Name="trip_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SearchTrips_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="trip_details_id" Nullable="false" />
+    <Property Type="String" Name="vehicle_type" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="cost" Nullable="true" />
+    <Property Type="String" Name="start_point" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="end_point" Nullable="true" MaxLength="310" />
+    <Property Type="Time" Name="time_start" Nullable="true" />
+    <Property Type="Time" Name="time_end" Nullable="true" />
+    <Property Type="Int32" Name="Chair" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SearchTrips1_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="trip_details_id" Nullable="false" />
+    <Property Type="String" Name="vehicle_type" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="cost" Nullable="true" />
+    <Property Type="String" Name="start_point" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="end_point" Nullable="true" MaxLength="310" />
+    <Property Type="Time" Name="time_start" Nullable="true" />
+    <Property Type="Time" Name="time_end" Nullable="true" />
+    <Property Type="Int32" Name="Chair" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SearchTrips1_Result1">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="trip_details_id" Nullable="false" />
+    <Property Type="String" Name="vehicle_type" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="cost" Nullable="true" />
+    <Property Type="String" Name="start_point" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="end_point" Nullable="true" MaxLength="310" />
+    <Property Type="Time" Name="time_start" Nullable="true" />
+    <Property Type="Time" Name="time_end" Nullable="true" />
+    <Property Type="Int32" Name="Chair" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetTripDetails_Result">
+    <Property Type="Int32" Name="trip_id" Nullable="false" />
+    <Property Type="Int32" Name="trip_details_id" Nullable="false" />
+    <Property Type="Int32" Name="vehicle_id" Nullable="false" />
+    <Property Type="Int32" Name="buses_id" Nullable="false" />
+    <Property Type="String" Name="start_point" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="end_point" Nullable="true" MaxLength="310" />
+    <Property Type="Int32" Name="cost" Nullable="true" />
+    <Property Type="Int32" Name="so_ghe_trong" Nullable="true" />
+    <Property Type="DateTime" Name="date_start" Nullable="true" />
+    <Property Type="DateTime" Name="date_end" Nullable="true" />
+    <Property Type="String" Name="ten_xe" Nullable="true" MaxLength="210" />
+    <Property Type="String" Name="anh_xe" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="anh_nxe" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="ten_nxe" Nullable="true" MaxLength="210" />
+  </ComplexType>
+  <ComplexType Name="GetTripDetails_Result1">
+    <Property Type="Int32" Name="trip_id" Nullable="false" />
+    <Property Type="Int32" Name="trip_details_id" Nullable="false" />
+    <Property Type="Int32" Name="vehicle_id" Nullable="false" />
+    <Property Type="Int32" Name="buses_id" Nullable="false" />
+    <Property Type="String" Name="start_point" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="end_point" Nullable="true" MaxLength="310" />
+    <Property Type="Int32" Name="cost" Nullable="true" />
+    <Property Type="Int32" Name="so_ghe_trong" Nullable="true" />
+    <Property Type="DateTime" Name="date_start" Nullable="true" />
+    <Property Type="DateTime" Name="date_end" Nullable="true" />
+    <Property Type="String" Name="ten_xe" Nullable="true" MaxLength="210" />
+    <Property Type="String" Name="anh_xe" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="anh_nxe" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="ten_nxe" Nullable="true" MaxLength="210" />
+  </ComplexType>
+  <ComplexType Name="GetTripDetails_Result2">
+    <Property Type="Int32" Name="trip_id" Nullable="false" />
+    <Property Type="Int32" Name="trip_details_id" Nullable="false" />
+    <Property Type="Int32" Name="vehicle_id" Nullable="false" />
+    <Property Type="Int32" Name="buses_id" Nullable="false" />
+    <Property Type="String" Name="start_point" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="end_point" Nullable="true" MaxLength="310" />
+    <Property Type="Int32" Name="cost" Nullable="true" />
+    <Property Type="Int32" Name="so_ghe_trong" Nullable="true" />
+    <Property Type="DateTime" Name="date_start" Nullable="true" />
+    <Property Type="DateTime" Name="date_end" Nullable="true" />
+    <Property Type="Time" Name="time_start" Nullable="true" />
+    <Property Type="Time" Name="time_end" Nullable="true" />
+    <Property Type="String" Name="ten_xe" Nullable="true" MaxLength="210" />
+    <Property Type="String" Name="anh_xe" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="anh_nxe" Nullable="true" MaxLength="310" />
+    <Property Type="String" Name="ten_nxe" Nullable="true" MaxLength="210" />
+  </ComplexType>
+  <Association Name="FK_buser_account_buses">
+    <End Type="QuanLyBenXeModel.bus" Role="bus" Multiplicity="0..1" />
+    <End Type="QuanLyBenXeModel.buser_account" Role="buser_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bus">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="buser_account">
+        <PropertyRef Name="id_buses" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tieu_de" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="tom_tat" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="hinh_anh" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="noi_dung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="thoi_gian_viet" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="tac_gia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link_seo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

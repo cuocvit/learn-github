@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DATA.Entity.trip_details>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.date_start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_end)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.time_end)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trip.start_point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trip.end_point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.trip.vehicle.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.date_start)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.time_start)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.date_end)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.time_end)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.total)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.trip.start_point)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.trip.end_point)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.trip.vehicle.name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+    </td>
+</tr>
+}
+
+</table>

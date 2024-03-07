@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .header {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(rgb(255, 170, 14), #fb4b00);
+    }
+    .container {
+        width: 80%;
+        height: 1200px;
+        margin: 0 10%;
+        background-color: rgb(255, 255, 255);
+        font-family: InterTight;
+    }
+
+        .container h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 50px;
+            text-transform: uppercase;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 16px;
+            /* margin-top: 50px; */
+        }
+
+        .container p {
+            /* text-align: center; */
+            /* margin-top: 50px; */
+            font-size: 18px;
+            font-weight: 550;
+            margin-top: 10px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+    .first_content {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .content {
+        font-size: 24px;
+        width: 100%;
+        margin-left: 50px;
+    }
+
+        .content p {
+            font-size: 18px;
+        }
+
+        .content ul {
+            margin-top: 20px;
+            margin-left: 50px;
+            /* list-style-type: none; */
+            font-size: 16px;
+            line-height: 30px;
+        }
+
+    .footer {
+        background-color: rgb(255 247 245);
+        height: 220px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: #000000;
+    }
+
+        .footer img {
+            height: 60%;
+            border-radius: 20px;
+            margin-right: 50px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .footer .con {
+            margin-left: 20px;
+            margin-top: 20px;
+            margin-right: 20px;
+            line-height: 30px;
+            display: flex;
+            flex-direction: column;
+            font-family: "Roboto Condensed", sans-serif;
+        }
+
+            .footer .con h1 {
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
+
+            .footer .con a {
+                text-decoration: none;
+                color: #000000;
+                font-size: 16px;
+            }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer li:hover {
+            cursor: pointer;
+        }
+
+        .footer li {
+            list-style: circle;
+        }
+</style>
+<!-- 2. Container -->
+<div class="container">
+    <h1>PHƯƠNG TRANG</h1>
+    <h2>"Chất lượng là danh dự"</h2>
+    <p>Tập đoàn Phương Trang - FUTA Group được thành lập năm 2001. Với hoạt động kinh doanh chính trong lĩnh vực mua bán xe ô tô, vận tải hành kháchbất động sản và kinh doanh dịch vụ. Phương Trang dần trở thành cái tên quen thuộc đồng hành cùng người Việt trên mọi lĩnh vực.</p>
+    <p> Trải qua hơn 20 năm hình thành và phát triển đặt khách hàng là trọng tâm, chúng tôi tự hào trị thành doanh nghiệp vận tải nòng cốt đóng góp tích cực vào sự phát triển chung của ngành vận tải nói riêng và nền kinh tế đất nước nói chungLuôn cái tiến mang đến chất lượng dịch vụ tối ưu nhất dành cho khách hàng, Công ty Phương Trang được ghi nhận qua nhiều giải thưởng danh giá như “Thương hiệu số 1 Việt Nam, "Top 10 Thương hiệu nổi tiếng Việt Nam", "Top 10 Dịch vụ hoàn hảo vì quyền lợi người tiêu dùng năm 2022", "Top 10 Doanh nghiệp tiêu biểu Việt Nam", "Top 10 thương hiệu, sản phẩm dịch vụ uy tin Việt Nam - ASEAN 2022"</p>
+    <div class="first_content">
+        <img src="https://th.bing.com/th/id/OIP.K6vq-EF6xqd8MfYEJQGVpwHaHa?rs=1&pid=ImgDetMain" alt="">
+        <div class="content">
+            <h1>Tầm nhìn và sứ mệnh</h1>
+            <h2>Báo đáp tổ quốc vì một việt nam hùng mạnh</h2>
+            <p>Trở thành Tập Đoàn uy tín và chất lượng hàng đầu Việt Nam với cam kết: </p>
+            <ul>
+                <li>Tạo mô trường làm việc năng động</li>
+                <li>Phát triển từ lòng tin của khách hàng</li>
+                <li>Trở thành tập đoàn dẫn đầu chuyên nghiệp</li>
+            </ul>
+        </div>
+    </div>
+    <div class="first_content">
+        <div class="content">
+            <h1>Triết lý</h1>
+
+            <p>Chúng tôi cam kết cung cấp dịch vụ vận chuyển xe hiệu quả và an toàn, tạo ra trải nghiệm khách hàng tuyệt vời. Chúng tôi đặt sự an toàn và đáng tin cậy lên hàng đầu, đồng thời nỗ lực không ngừng để cải tiến và đáp ứng mọi nhu cầu của khách hàng. Với đội ngũ nhân viên chuyên nghiệp và dịch vụ chăm sóc khách hàng xuất sắc, chúng tôi xây dựng cầu nối đáng tin cậy giữa khách hàng và mục tiêu đến đích của họ</p>
+
+        </div>
+        <img src="https://th.bing.com/th/id/R.bcadf9505b222868f045069dddeaf831?rik=UlUpaMYnN6pWsA&riu=http%3a%2f%2ffarm5.staticflickr.com%2f4139%2f4773193145_2cbcf8491f_z.jpg&ehk=R8hrkxIBakInltjH2g74roCm1nRy2m0%2fIgXXBFeJpEQ%3d&risl=&pid=ImgRaw&r=0" alt="">
+    </div>
+</div>
+
